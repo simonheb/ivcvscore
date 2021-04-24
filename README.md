@@ -5,6 +5,7 @@ Stata package to compute inverse variance-covariance weighted z-scores, followin
  - [Citation](#citation)
  - [Changelog](#changelog)
  - [References](#references)
+ - [Example code](#illustrative-code-example)
 
 ## Install
 To obtain the latest version through github, from the main window in Stata, run:
@@ -40,4 +41,4 @@ gen x4 = x3
 gen x5 = 1 
 //compute score
 ivcvscore x1 x2 x3 x4 x5, gen(s)
-'''
+```
