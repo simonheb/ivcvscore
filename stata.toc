@@ -1,3 +1,3 @@
 v 3
 d Author: Simon Heß, Goethe University Frankfurt
-p ivcwscore Stata package to compute inverse variance-covariance weighted z-scores
+p ivcvscore Stata package to compute inverse variance-covariance weighted z-scores
