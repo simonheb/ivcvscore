@@ -26,3 +26,18 @@ Use at own risk. You agree that use of this software is at your own risk. The au
 
 ## References
 **Anderson, M. L. (2008)**. "Multiple inference and gender differences in the effects of early intervention: A reevaluation of the Abecedarian, Perry Preschool, and Early Training Projects." *Journal of the American statistical Association*, 103(484), 1481-1495.
+
+## Illustrative code example
+```
+//generate data with correlated variables
+clear
+set obs 100
+gen a = rnormal() 
+gen x1 = rnormal() + a 
+gen x2 = rnormal() + a 
+gen x3 = rnormal() 
+gen x4 = x3 
+gen x5 = 1 
+//compute score
+ivcvscore x1 x2 x3 x4 x5, gen(s)
+'''
