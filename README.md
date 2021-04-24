@@ -24,4 +24,4 @@ Heß, Simon, "ivcwscore: Stata package to compute inverse covariance weighted z-
 Use at own risk. You agree that use of this software is at your own risk. The author is optimistic but does not make any warranty as to the results that may be obtained from use of this software. The author would be very happy to hear about any issues you might find and will be transparent about changes made in response to user inquiries.
 
 ## References
-Anderson, M. L. (2008). "Multiple inference and gender differences in the effects of early intervention: A reevaluation of the Abecedarian, Perry Preschool, and Early Training Projects." *Journal of the American statistical Association*, 103(484), 1481-1495.
+**Anderson, M. L. (2008)**. "Multiple inference and gender differences in the effects of early intervention: A reevaluation of the Abecedarian, Perry Preschool, and Early Training Projects." *Journal of the American statistical Association*, 103(484), 1481-1495.
