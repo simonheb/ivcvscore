@@ -9,7 +9,7 @@ Stata package to compute inverse covariance weighted z-scores
 ## Install
 To obtain the latest version through github, from the main window in Stata, run:
 ```
-net describe icwscore, from(https://raw.githubusercontent.com/simonheb/ivcwscore/master/)
+net describe ivcwscore, from(https://raw.githubusercontent.com/simonheb/ivcwscore/master/)
 ```
 If the download from within Stata fails (e.g. because you are behind a firewall),you can always download the files directly: 
  - https://raw.githubusercontent.com/simonheb/ivcwscore/master/ivcwscore.ado
