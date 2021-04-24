@@ -1,0 +1,12 @@
+v 3
+d ivcvscore - Stata package to compute inverse variance-covariance weighted z-scores.
+d Author: Simon Heß, Goethe University Frankfurt, Germany
+d Support: hess@econ.uni-frankfurt.de
+d
+d For details, see:
+d http://HessS.org
+d
+d Distribution-Date: 20210424
+
+f ivcvscore.ado
+f ivcvscore.sthlp
