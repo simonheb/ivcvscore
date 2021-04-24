@@ -1,5 +1,5 @@
-cap program drop ivcwscore
-program ivcwscore, rclass
+cap program drop ivcvscore
+program ivcvscore, rclass
 	syntax varlist [if], [treatment(varlist numeric)] GENerate(name)
 	
 	marksample touse
