@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 0.0.1 2021}{...}
+{* *! version 0.0.1 apr2021}{...}
 {vieweralsosee "[R] egen" "help egen"}{...}
 {viewerjumpto "Syntax" "ivcwscore##syntax"}{...}
 {viewerjumpto "Description" "ivcwscore##description"}{...}
@@ -23,7 +23,7 @@ Computes inverse variance-covariance weighted z-scores, following Anderson (2008
 {p 8 16 2}
 {cmd:ivcwscore}
 	{it:varlist}
-	{cmd:,} {it:{help ritest##options_table:generate(varname)}}
+	{cmd:,} {it:generate(varname)}
 	{cmd::} [{it:treatment(varname)}]
 
 {synoptset 27 tabbed}{...}
