@@ -3,10 +3,6 @@
 {vieweralsosee "[R] egen" "help egen"}{...}
 {viewerjumpto "Syntax" "ivcvscore##syntax"}{...}
 {viewerjumpto "Description" "ivcvscore##description"}{...}
-{viewerjumpto "Options" "ivcvscore##options"}{...}
-{viewerjumpto "Examples" "ivcvscore##examples"}{...}
-{viewerjumpto "Author" "ivcvscore##author"}{...}
-{viewerjumpto "References" "ivcvscore##references"}{...}
 {title:Title}
 
 {p2colset 5 20 22 2}{...}
