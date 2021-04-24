@@ -32,10 +32,7 @@ program ivcvscore, rclass
 	local varcount: word count `components'
 		
 	//get cov matrix from control group
-	qui corr `components'  if `treatment'==0 & `touse', 
-	
-	
-	c
+	qui corr `components'  if `treatment'==0 & `touse', c
 	matrix Cinv=inv(r(C))
 	matrix Isrow = vecdiag(I(`varcount'))
 	matrix weights = Isrow*Cinv
