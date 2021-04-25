@@ -5,7 +5,7 @@ program ivcvscore, rclass
 	marksample touse
 	
 	//drop collinear variables
-	_rmcoll x* if `touse', forcedrop
+	_rmcoll `varlist' if `touse', forcedrop
 	local varlist = r(varlist)
 	
 	//I use the control group for normalization. If no treatment is given, I use everything
