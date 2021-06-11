@@ -28,7 +28,7 @@ program ivcvscore, rclass
 			di as err "no variation in `var', leaving it out of indices"
 		}
 		else {
-			gen `z`var'' = (`var'-r(mean))/r(sd) if `touse'
+			gen `z`var'' = `var' // (`var'-r(mean))/r(sd) if `touse'
 			local usedvars `usedvars' `var'
 			local components `components' `z`var''
 		}
