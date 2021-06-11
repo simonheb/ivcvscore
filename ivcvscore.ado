@@ -1,7 +1,6 @@
 cap program drop ivcvscore
 program ivcvscore, rclass
 	syntax varlist [if] [aw], [treatment(varlist numeric)] GENerate(name)
-	
 	marksample touse
 	
 	//drop collinear variables
@@ -12,6 +11,8 @@ program ivcvscore, rclass
 	if "`weight'" != "" {
 		local wgt [`weight'`exp']
 	}
+	di "`wgt'"
+
 	
 	//I use the control group for normalization. If no treatment is given, I use everything
 	if ("`treatment'"=="") {
@@ -28,16 +29,18 @@ program ivcvscore, rclass
 			di as err "no variation in `var', leaving it out of indices"
 		}
 		else {
-			gen `z`var'' = `var' // (`var'-r(mean))/r(sd) if `touse'
+			gen `z`var'' = (`var'-r(mean))/r(sd) if `touse'
 			local usedvars `usedvars' `var'
 			local components `components' `z`var''
 		}
 	}
 
 	local varcount: word count `components'
-		
 	//get cov matrix from control group
-	qui corr `components'  if `treatment'==0 & `touse' `wgt', c
+	di as err "corr `components'  `wgt' if `treatment'==0 & `touse', c"
+	corr `components'  `wgt' if `treatment'==0 & `touse', c
+
+	
 	matrix Cinv=inv(r(C))
 	matrix Isrow = vecdiag(I(`varcount'))
 	matrix weights = Isrow*Cinv
@@ -47,12 +50,15 @@ program ivcvscore, rclass
 	}
 	mat colnames weights = `usedvars'
 	mat list weights 
+
+	
 	
 	//compute weighted average
 	gen `generate' = 0 if `touse'
 	foreach var of local usedvars {
 		mat weight = weights[1,"`var'"]
-		qui replace `generate' = `generate'+weights[1,1]*`var' if `touse'
+		di "`var'"
+		qui replace `generate' = `generate'+weight[1,1]*`z`var'' if `touse'
 	}
 
 	//normalize final index to have mean 0 and sd 1 in the control group
