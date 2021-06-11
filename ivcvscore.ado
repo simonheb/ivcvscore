@@ -1,12 +1,17 @@
 cap program drop ivcvscore
 program ivcvscore, rclass
-	syntax varlist [if], [treatment(varlist numeric)] GENerate(name)
+	syntax varlist [if] [aw], [treatment(varlist numeric)] GENerate(name)
 	
 	marksample touse
 	
 	//drop collinear variables
 	_rmcoll `varlist' if `touse', forcedrop
 	local varlist = r(varlist)
+	
+	
+	if "`weight'" != "" {
+		local wgt [`weight'`exp']
+	}
 	
 	//I use the control group for normalization. If no treatment is given, I use everything
 	if ("`treatment'"=="") {
@@ -17,7 +22,7 @@ program ivcvscore, rclass
 	foreach var of varlist `varlist'{
 		tempvar z`var' 
 		
-		qui sum `var' if `treatment'==0 & `touse'
+		qui sum `var' if `treatment'==0 & `touse' `wgt'
 		
 		if r(sd)==0 {
 			di as err "no variation in `var', leaving it out of indices"
@@ -32,7 +37,7 @@ program ivcvscore, rclass
 	local varcount: word count `components'
 		
 	//get cov matrix from control group
-	qui corr `components'  if `treatment'==0 & `touse', c
+	qui corr `components'  if `treatment'==0 & `touse' `wgt', c
 	matrix Cinv=inv(r(C))
 	matrix Isrow = vecdiag(I(`varcount'))
 	matrix weights = Isrow*Cinv
@@ -51,7 +56,7 @@ program ivcvscore, rclass
 	}
 
 	//normalize final index to have mean 0 and sd 1 in the control group
-	qui sum `generate' if `treatment'==0  & `touse'
+	qui sum `generate' `wgt' if `treatment'==0  & `touse'
 	qui replace `generate'= (`generate'-r(mean))/r(sd)	 if `touse'
 	label var `generate' "Inverse covariance weighted score of: `usedvars'"	
 end
