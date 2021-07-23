@@ -50,8 +50,9 @@ program ivcvscore, rclass
 	}
 	mat colnames weights = `usedvars'
 	mat list weights 
-
 	
+	mata : st_matrix("weightsum", rowsum(st_matrix("weights")))
+	return add matrix relative_weights = weights/weightsum[1,1]
 	
 	//compute weighted average
 	gen `generate' = 0 if `touse'
@@ -60,7 +61,7 @@ program ivcvscore, rclass
 		di "`var'"
 		qui replace `generate' = `generate'+weight[1,1]*`z`var'' if `touse'
 	}
-
+	
 	//normalize final index to have mean 0 and sd 1 in the control group
 	qui sum `generate' `wgt' if `treatment'==0  & `touse'
 	qui replace `generate'= (`generate'-r(mean))/r(sd)	 if `touse'
