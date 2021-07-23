@@ -52,7 +52,8 @@ program ivcvscore, rclass
 	mat list weights 
 	
 	mata : st_matrix("weightsum", rowsum(st_matrix("weights")))
-	return matrix relative_weights = weights/weightsum[1,1]
+	matrix relative_weights = weights/weightsum[1,1]
+	return matrix relative_weights = relative_weights
 	
 	//compute weighted average
 	gen `generate' = 0 if `touse'
